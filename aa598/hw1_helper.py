@@ -18,6 +18,7 @@ class TrajectoryData(Dataset):
         with open('%s.pickle'%filename, 'rb') as handle:
         #     wave_data = pickle.load(handle)
             total = pickle.load(handle)
+        print(total.shape)
         self.future = torch.tensor(total[:, 4:6])
         new = np.delete(total, [4, 6], axis = 1)
         self.history = torch.tensor(total)

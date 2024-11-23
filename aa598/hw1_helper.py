@@ -16,12 +16,11 @@ import ipywidgets as widgets
 class TrajectoryData(Dataset):
     def __init__(self, filename):
         with open('%s.pickle'%filename, 'rb') as handle:
-        #     wave_data = pickle.load(handle)
+            # wave_data = pickle.load(handle)
             total = pickle.load(handle)
-        print(total.shape)
-        self.future = torch.tensor(total[:, 4:6])
-        new = np.delete(total, [4, 6], axis = 1)
-        self.history = torch.tensor(total)
+        self.history = torch.tensor(total['future'])
+        self.future = torch.tensor(total['history']) 
+        # y = mx where m is some model
         
 
     def __len__(self):
